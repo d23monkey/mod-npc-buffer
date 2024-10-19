@@ -57,16 +57,16 @@ Buff.MaxLevel = 80
 #   Buff.Spells
 #       Description: Buff Defaults (Leave blank to disable a buff)
 #
-#       1. Prayer of Fortitude (48162)
-#       2. Greater Blessing of Kings (43223)
-#       3. Mark of the Wild (48469)
-#       4. Prayer of Spirit (48074)
-#       5. Prayer of Shadow Protection (48170)
-#       6. Arcane Intellect (42995)
-#       7. Thorns (53307)
+#       1. Prayer of Fortitude (48162)坚韧祷告
+#       2. Greater Blessing of Kings (43223)王者祝福
+#       3. Mark of the Wild (48469)荒野印记（48470大爪子）
+#       4. Prayer of Spirit (48074)精神祷告
+#       5. Prayer of Shadow Protection (48170)暗影防护祷言
+#       6. Arcane Intellect (42995)60点智力奥术智慧36880100点
+#       7. Thorns (53307)荆棘术
 #
 #       Fun Stuff
-#       48612 (Dalron the Controller)
+#       48612 (Dalron the Controller)（57623寒冬号角）（61316达拉然光辉）
 #
 
 Buff.Spells = "48162;43223;48469;48074;48170;42995;53307;"
@@ -95,10 +95,10 @@ Buff.NumPhrases = 4
 #   Spoken randomly to the world
 #
 
-BF.P1 = "Come get buffed, taste my stuff, the elven females can't get enuff!"
-BF.P2 = "She never shook the stars from the swirling cosmos, but she loved good tauren and rode good kodos."
-BF.P3 = "Mr. Grubbs is the toughest grub around. No doubt about it."
-BF.P4 = "Those trolls sure now how to dance! I hear they like to party in the mountains of Darkshore."
+BF.P1 = "来吧，接受我的增益，品尝我的力量，精灵女性们无法抗拒！"
+BF.P2 = "她从未摇落星辰，也未掀起漩涡宇宙，但她热爱优秀的牛头人，骑着优秀的科多兽。"
+BF.P3 = "格鲁布斯先生是周围最坚韧的虫子。毫无疑问。"
+BF.P4 = "那些巨魔真的知道如何跳舞！我听说他们喜欢在黑海岸的山上聚会。"
 #
 #   Buff.NumWhispers
 #       Description: How many whispers does the NPC have?
@@ -114,16 +114,16 @@ Buff.NumWhispers = 10
 #   Use '%s%' to include the player's name
 #
 
-BF.W1 = "Koiter's spirit stands watch looking out over the Barrens. Have you visted the shrine yet %s?"
-BF.W2 = "The king's bones are still there. Everlasting in the dust. The weapons are there too.. if you know where to look %s."
-BF.W3 = "Oh %s, how I miss those days in the wastes.. watching the sun set over Nagrand."
-BF.W4 = "Ahh.. long time no see %s, how goes it on the war front old friend?"
-BF.W5 = "You'll find the statue across a bridge in the northern wilds of Azshara %s. It lies in ruin and is guarded by Naga."
-BF.W6 = "To crush your enemies, see them driven before %s, and hear the lamentations of their women!"
-BF.W7 = "Aye.. %s. Rumor has it there are two slaves in the cages of Blackrock Depths. Perhaps they can tell you more."
-BF.W8 = "Indeed.. %s. The dwarves keep many secrets about that which lies beyond the deep recesses of their kingdoms."
-BF.W9 = "A little bit of this.. a dab of that.. ahh.. there we go %s."
-BF.W10 = "No %s, I never did hear if they found the children that disappeared from Nagrand and Zangarmarsh."
+BF.W1 = "科伊特的灵魂守望着贫瘠之地。你去过那座神龛了吗 %s?"
+BF.W2 = "国王的骨头依然在那里。永恒地躺在尘埃之中。那里还有武器..如果你知道在哪里找的话，%s."
+BF.W3 = "哦 %s, 我多么怀念那些在荒原上度过的日子..看着太阳从纳格兰的上空落下。"
+BF.W4 = "啊，好久不见 %s, 老朋友，战场上的情况如何？"
+BF.W5 = "你会在艾萨拉北部荒野的一座桥上找到雕像 %s. 它已经残破，由娜迦守护着。"
+BF.W6 = "碾碎你的敌人，看着他们在 %s 面前被击溃, 听着他们的女人的哀叹声！"
+BF.W7 = "是的.. %s. 传闻在黑石深渊的牢笼里有两名奴隶。也许他们可以告诉你更多。"
+BF.W8 = "确实.. %s. 关于他们王国深处的秘密，矮人们守口如瓶。"
+BF.W9 = "这里加一点，那里加一点……啊……好了 %s."
+BF.W10 = "不 %s, 我从未听说他们找到了那些在纳格兰和赞加沼泽失踪的孩子。"
 
 
 #

@@ -123,7 +123,7 @@ public:
         // Announce Module
         if (BFEnableModule && BFAnnounceModule)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00BufferNPC |rmodule.");
+            ChatHandler(player->GetSession()).SendSysMessage("本服务器正在运行 |cff4CFF00增益NPC |r模块.");
         }
     }
 };
@@ -131,12 +131,12 @@ public:
 class buff_npc : public CreatureScript
 {
 public:
-    buff_npc() : CreatureScript("buff_npc") { }
+    buff_npc() : CreatureScript("buff_npc") {}
 
     /** Get the most level-appropriate spell from the chain, 
      * based on character level compared to max level (MaxLevel)
      *  */
-    static uint GetSpellForLevel(uint32 spell_id, Player *player)
+    static uint32 GetSpellForLevel(uint32 spell_id, Player *player)
     {
         uint32 level = player->GetLevel();
 
@@ -200,11 +200,11 @@ public:
         // Sanitize
         if (whisper == "")
         {
-            whisper = "ERROR! NPC Emote Text Not Found! Check the npc_buffer.conf!";
+            whisper = "错误！找不到NPC表情文字！检查npc_buffer.conf！";
         }
 
         std::string randMsg = sConfigMgr->GetOption<std::string>(whisper.c_str(), "");
-        replace(randMsg, "%s", Name);
+        replace(randMsg, "{}", Name);
         return randMsg.c_str();
     }
 
@@ -219,24 +219,37 @@ public:
         // Sanitize
         if (phrase == "")
         {
-            phrase = "ERROR! NPC Emote Text Not Found! Check the npc_buffer.conf!";
+            phrase = "错误！找不到NPC表情文字！检查npc_buffer.conf！";
         }
 
         std::string randMsg = sConfigMgr->GetOption<std::string>(phrase.c_str(), "");
         return randMsg.c_str();
     }
 
-    // bool OnGossipSelect(Player* player, Creature* creature, uint32 /*uiSender*/, uint32 /* uiAction */) override
     bool OnGossipHello(Player* player, Creature* creature)
+    {
+        player->PlayerTalkClass->ClearMenus();
+
+        //AddGossipItemFor(player, GOSSIP_ICON_CHAT, "施放一键BUFF", GOSSIP_SENDER_MAIN, 1, "确定要施放一键BUFF吗?", 0, false);
+        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "请帮我施加一套全BUFF，让我天下无敌！", GOSSIP_SENDER_MAIN, 1);
+		AddGossipItemFor(player, GOSSIP_ICON_CHAT, "算了，我还是自己努力吧", GOSSIP_SENDER_MAIN, 999);
+        SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
+        return true;
+    }
+
+    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*uiSender*/, uint32 uiAction)
     {
         if (!BFEnableModule)
         {
             return false;
         }
-
-        // Who are we dealing with?
-        std::string CreatureWhisper = "Init";
-        std::string PlayerName = player->GetName();
+		switch (uiAction)
+		{
+		case 1:
+		{
+			// Who are we dealing with?
+			std::string CreatureWhisper = "Init";
+			std::string PlayerName = player->GetName();
 
         // Store Buff IDs
         std::vector<uint32> vecBuffs = {};
@@ -251,7 +264,7 @@ public:
         {
             player->RemoveAura(15007);
             std::ostringstream res;
-            res << "The aura of death has been lifted from you " << PlayerName << ". Watch yourself out there!";
+            res << "死亡的光环已经从你身上消散 " << PlayerName << ". 小心点!";
             creature->Whisper(res.str().c_str(), LANG_UNIVERSAL, player);
         }
 
@@ -281,9 +294,17 @@ public:
             creature->Whisper(PickWhisper(PlayerName).c_str(), LANG_UNIVERSAL, player);
         }
 
-        // Emote and Close
-        creature->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
-        CloseGossipMenuFor(player);
+			// Emote and Close
+			creature->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
+			CloseGossipMenuFor(player);
+			break;
+		}
+		case 999:
+			CloseGossipMenuFor(player);
+			break;
+		default:
+			break;
+		}
         return true;
     }
 
