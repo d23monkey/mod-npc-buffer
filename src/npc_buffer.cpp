@@ -70,6 +70,7 @@ This code and content is released under the [GNU AGPL v3](https://github.com/aze
 #include "Player.h"
 #include "ScriptedCreature.h"
 #include "ScriptedGossip.h"
+#include "SpellMgr.h"
 #include "Log.h"
 
 static bool BFEnableModule;
@@ -131,7 +132,7 @@ public:
 class buff_npc : public CreatureScript
 {
 public:
-    buff_npc() : CreatureScript("buff_npc") {}
+    buff_npc() : CreatureScript("buff_npc") { }
 
     /** Get the most level-appropriate spell from the chain, 
      * based on character level compared to max level (MaxLevel)
@@ -231,8 +232,8 @@ public:
         player->PlayerTalkClass->ClearMenus();
 
         //AddGossipItemFor(player, GOSSIP_ICON_CHAT, "施放一键BUFF", GOSSIP_SENDER_MAIN, 1, "确定要施放一键BUFF吗?", 0, false);
-        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "请帮我施加一套全BUFF，让我天下无敌！", GOSSIP_SENDER_MAIN, 1);
-		AddGossipItemFor(player, GOSSIP_ICON_CHAT, "算了，我还是自己努力吧", GOSSIP_SENDER_MAIN, 999);
+        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_KillFlagCarriers_grabFlag_CapIt:25|t请帮我施加一套全BUFF，让我天下无敌！", GOSSIP_SENDER_MAIN, 1);
+		AddGossipItemFor(player, GOSSIP_ICON_CHAT, "|TInterface/ICONS/Temp:25|t算了，我还是自己努力吧", GOSSIP_SENDER_MAIN, 999);
         SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
         return true;
     }
@@ -297,8 +298,8 @@ public:
 			// Emote and Close
 			creature->HandleEmoteCommand(EMOTE_ONESHOT_FLEX);
 			CloseGossipMenuFor(player);
-			break;
-		}
+        }
+            break;		
 		case 999:
 			CloseGossipMenuFor(player);
 			break;
