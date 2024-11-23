@@ -232,7 +232,7 @@ public:
         player->PlayerTalkClass->ClearMenus();
 
         //AddGossipItemFor(player, GOSSIP_ICON_CHAT, "施放一键BUFF", GOSSIP_SENDER_MAIN, 1, "确定要施放一键BUFF吗?", 0, false);
-        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_KillFlagCarriers_grabFlag_CapIt:25|t请帮我施加一套全BUFF，让我天下无敌！", GOSSIP_SENDER_MAIN, 1);
+        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "|TInterface/ICONS/Achievement_BG_KillFlagCarriers_grabFlag_CapIt:25|t帮我加一套BUFF，让我天下无敌！", GOSSIP_SENDER_MAIN, 1);
 		AddGossipItemFor(player, GOSSIP_ICON_CHAT, "|TInterface/ICONS/Temp:25|t算了，我还是自己努力吧", GOSSIP_SENDER_MAIN, 999);
         SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
         return true;
