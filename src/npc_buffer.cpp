@@ -87,7 +87,9 @@ static uint32 MaxLevel = 80;
 class BufferConfig : public WorldScript
 {
 public:
-    BufferConfig() : WorldScript("BufferConfig_conf") {}
+    BufferConfig() : WorldScript("BufferConfig_conf", {
+        WORLDHOOK_ON_BEFORE_CONFIG_LOAD
+    }) {}
 
     void OnBeforeConfigLoad(bool /*reload*/) override
     {
@@ -117,14 +119,20 @@ public:
 class BufferAnnounce : public PlayerScript
 {
 public:
-    BufferAnnounce() : PlayerScript("BufferAnnounce") {}
+    BufferAnnounce() : PlayerScript("BufferAnnounce", {
+        PLAYERHOOK_ON_LOGIN
+    }) {}
 
-    void OnLogin(Player *player)
+    void OnPlayerLogin(Player *player)
     {
         // Announce Module
         if (BFEnableModule && BFAnnounceModule)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("本服务器正在运行 |cff4CFF00增益NPC |r模块.");
+            uint32 loc = player->GetSession()->GetSessionDbLocaleIndex();
+            if (loc == 4)
+                ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00本服务端已加载|r |cff00ccff增益NPC |r|cff00ff00模块.|r");
+            else
+				ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00BufferNPC |rmodule.");
         }
     }
 };
